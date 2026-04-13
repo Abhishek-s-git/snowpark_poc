@@ -4,21 +4,16 @@ on:
   push:
     branches:
       - main
-  
-
-  workflow dispatch:
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs on: unbuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: Abhishek-s-git/snowpark_poc
-          ref: main
-      
+
       - name: Setup Python 3.9
         uses: actions/setup-python@v4
         with:
@@ -34,6 +29,6 @@ jobs:
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_WARESHOUSE: ${{ secrets.SNOWFLAKE_WARESHOUSE }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
         run: python deploy_snowpark_app.py $GITHUB_WORKSPACE
