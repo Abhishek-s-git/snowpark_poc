@@ -34,6 +34,7 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
         run: |
           snow sql -q "USE DATABASE $SNOWFLAKE_DATABASE;" --temporary-connection
           snow sql -q "USE SCHEMA $SNOWFLAKE_SCHEMA;" --temporary-connection
