@@ -2,12 +2,7 @@ definition_version: "1.1"
 
 snowpark:
   project_name: "my_snowpark_project"
-
-  # REQUIRED: Fix runtime (this solves your error)
-  runtime: python3.9
-
   stage_name: "dev_deployment"
-
   src: "app/"
 
   functions:
@@ -28,5 +23,5 @@ snowpark:
 
     - name: test_procedure
       handler: "procedures.test_procedure"
-      signature: []   #FIXED
+      signature: []
       returns: string
