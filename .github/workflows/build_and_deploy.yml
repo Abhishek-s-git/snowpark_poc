@@ -19,9 +19,11 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install Python packages
+      - name: Install dependencies
         working-directory: snowpark_project
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install snowflake-cli-labs
 
       - name: Deploy Snowpark apps
         working-directory: snowpark_project
@@ -32,4 +34,6 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        run: python deploy_snowpark_app.py
+        run: |
+          snow snowpark build --allow-shared-libraries
+          snow snowpark deploy --replace
