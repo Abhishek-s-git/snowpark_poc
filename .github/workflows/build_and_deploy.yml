@@ -36,4 +36,4 @@ jobs:
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
         run: |
           snow snowpark build --allow-shared-libraries
-          snow snowpark deploy --replace --temporary-connection
+          snow snowpark deploy --replace --temporary-connection --force
