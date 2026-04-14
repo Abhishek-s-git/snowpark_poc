@@ -35,5 +35,8 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
         run: |
+          snow sql -q "DROP PROCEDURE IF EXISTS hello_procedure(string);" --temporary-connection
+          snow sql -q "DROP PROCEDURE IF EXISTS test_procedure();" --temporary-connection
+          snow sql -q "DROP FUNCTION IF EXISTS hello_function(string);" --temporary-connection
           snow snowpark build --allow-shared-libraries
-          snow snowpark deploy --replace --temporary-connection --force
+          snow snowpark deploy --replace --temporary-connection
